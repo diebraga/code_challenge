@@ -1,0 +1,26 @@
+.tableWrapper {
+  width: 100%;
+  td {
+    text-align: center;
+  }
+
+  tr td:first-child {
+    text-align: center;
+  }
+
+  tr td:last-child {
+    text-align: center;
+  }
+  border-collapse:separate;
+  border-spacing:0 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.headWrapper {
+  background: cornsilk;
+}
+
+.bodyWrapper {
+  background: cornsilk;
+}

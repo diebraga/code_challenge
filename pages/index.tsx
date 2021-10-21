@@ -1,5 +1,8 @@
+import styled from '@emotion/styled'
 import Head from 'next/head'
+import Header from '../components/Header/index'
 import MotionBox from '../components/MotionBox'
+import { TeamTable } from '../components/TeamTable'
 
 export default function Home() {
   return (
@@ -9,18 +12,8 @@ export default function Home() {
         <meta name="description" content="Home page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MotionBox
-        animate={{ y: 50, scale: 0.97, }}
-        transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
-        marginY={8}
-        maxWidth={[280, 400]}
-        marginX="auto"          
-      >
-        <h1>Start</h1>
-          <div>
-            🚀
-          </div>
-      </MotionBox>
+      <Header />
+      <TeamTable />
     </>
   )
 }
