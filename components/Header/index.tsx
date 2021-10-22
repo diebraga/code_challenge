@@ -1,12 +1,18 @@
 import styles from './styles.module.scss'
 
-export default function Header() {
+type HeaderProps = {
+  onOpenModal: () => void
+}
+
+export default function Header({ onOpenModal }: HeaderProps) {
   return (
     <div className={styles.headerWrapper}>
       <div>
         <h1>My Team</h1>
       </div>
-      <button className='button-ui'>Import Team</button>
+      <div>
+        <button className='button-ui' onClick={onOpenModal}>Import Team</button>
+      </div>
     </div>
   )
 }

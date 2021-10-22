@@ -4,7 +4,7 @@ import { theme } from '../styles/theme'
 import { SWRConfig } from 'swr'
 import { fetcher } from '../utils/swrFetcher'
 import { Provider } from "next-auth/client"
-import '../styles/global.css'
+import '../styles/global.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
