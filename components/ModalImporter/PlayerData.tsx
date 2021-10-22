@@ -1,6 +1,5 @@
 import styles from './styles.module.scss'
-import { Button, Input } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { Input } from '@chakra-ui/react'
 import { CsvParser } from '../CsvParser';
 import { useTeamContext } from '../../contexts/teamContext';
 

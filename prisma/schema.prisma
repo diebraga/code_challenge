@@ -15,7 +15,26 @@ model User {
   emailVerified String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+
+  teamName      String?
+  favouritePlayer String?
+  players Player[]
   @@map(name: "users")
+}
+
+model Player {
+  id            Int       @default(autoincrement()) @id
+  height String
+  jersey_number String
+  nationality String
+  player_name String
+  position String
+  weight String
+
+  user User @relation(fields: [userId], references: [id])
+
+  userId Int
+  @@map(name: "players")
 }
 
 model Account {

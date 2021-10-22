@@ -14,7 +14,12 @@ export function ModalFooter({ formStep, prevStep, nextStep }: ModalFooterProps) 
     <footer className={styles.footer}>
       <div>
         {formStep > 0 && <Button variant='outline' color='gray.800' onClick={prevStep}>Return</Button>}
-        <Button color='#fff' bg='#1371FE' ml='5' onClick={nextStep} disabled={fileName === '' || teamName === '' || favouritePlayer === '' && formStep === 1}>
+        <Button 
+          color='#fff' 
+          bg='#1371FE' 
+          ml='5' 
+          onClick={nextStep} 
+          disabled={fileName === '' || teamName === '' || favouritePlayer === '' && formStep === 1}>
           Continue
         </Button>
       </div>
