@@ -16,17 +16,32 @@ type Team = {
 interface  TeamPContextProps {
   team: Team[]
   setTeam: Dispatch<SetStateAction<Team[]>>
+  teamName: string
+  setTeamName: Dispatch<SetStateAction<string>>
+  fileName: string
+  setfileName: Dispatch<SetStateAction<string>>
+  favouritePlayer: string
+  setFavouritePlayer: Dispatch<SetStateAction<string>>
 }
 
 export const TeamContext = createContext({} as TeamPContextProps)
 
 export function TeamProvider({ children }: TeamProviderProp) {
   const [team, setTeam] = useState<Team[]>([])
-  
+  const [teamName, setTeamName] = useState('')
+  const [fileName, setfileName] = useState('')
+  const [favouritePlayer, setFavouritePlayer] = useState('')
+console.log(favouritePlayer)
   return(
     <TeamContext.Provider value={{
       team,
-      setTeam
+      setTeam,
+      teamName, 
+      setTeamName,
+      fileName, 
+      setfileName,
+      favouritePlayer, 
+      setFavouritePlayer
     }}>
       {children}
     </TeamContext.Provider>

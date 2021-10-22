@@ -4,6 +4,7 @@ import { PlayerData } from './PlayerData'
 import { ModalFooter } from './ModalFooter'
 import { useState } from 'react'
 import { FavouritePlayer } from './FavouritePlayer'
+import { Summary } from './Summary'
 
 type ModalImporterProps = {
   showModal: boolean
@@ -52,6 +53,7 @@ export function ModalImporter({ showModal, onCloseModal }: ModalImporterProps) {
       </div>
       {formStep === 0 && <PlayerData />}
       {formStep === 1 && <FavouritePlayer />}
+      {formStep === 2 && <Summary />}
       <ModalFooter formStep={formStep} nextStep={nextStep} prevStep={prevStep}/>
     </div>
   </div>

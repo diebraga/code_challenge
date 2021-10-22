@@ -11,12 +11,13 @@ const papaparseOptions = {
 };
 
 export function CsvParser() {
-  const { setTeam } = useTeamContext()
+  const { setTeam, setfileName } = useTeamContext()
   const [fileLabel, setFileLabel] = useState({} as any)
 
   const handleForce = (data: any, fileInfo: any) => {
     setTeam(data)
     setFileLabel(fileInfo)
+    setfileName(fileInfo.name)
   }
 
   return (
