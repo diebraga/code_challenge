@@ -1,5 +1,7 @@
 import { useState } from "react";
 import CSVReader from "react-csv-reader";
+import { useTeamContext } from "../../contexts/teamContext";
+import styles from './styles.module.scss'
 
 const papaparseOptions = {
   header: true,
@@ -9,22 +11,25 @@ const papaparseOptions = {
 };
 
 export function CsvParser() {
-  const [team, setTeam] = useState([])
-  const handleForce = (data) => {
+  const { setTeam } = useTeamContext()
+  const [fileLabel, setFileLabel] = useState({} as any)
+
+  const handleForce = (data: any, fileInfo: any) => {
     setTeam(data)
+    setFileLabel(fileInfo)
   }
 
-  console.log(team)
   return (
-    <div className="container">
+    <>
+    <div>
       <CSVReader
-        cssClass="react-csv-input"
-        label="Select CSV with secret Death Star statistics"
+        cssClass="csvParser"
         onFileLoaded={handleForce}
         parserOptions={papaparseOptions}
       />
-      <p>and then open the console</p>
+      <p>{fileLabel.name}</p>
     </div>
+    </>
   )
 };
 

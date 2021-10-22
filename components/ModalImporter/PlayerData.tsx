@@ -4,11 +4,6 @@ import { useRef } from 'react'
 import { CsvParser } from '../CsvParser';
 
 export function PlayerData() {
-  const inputFile = useRef(null) 
-
-  const activeInput = () => {
-    inputFile.current.click();
-  };
 
   return (
     <div className={styles.content}>
@@ -18,10 +13,6 @@ export function PlayerData() {
       </div>
       <div>
         <p>File</p> 
-        <Button variant='outline' colorScheme='gray' _hover={{ bg: 'transparent' }} color='blue.500' onClick={activeInput}>
-          Select file
-        </Button>
-        <input type='file' id='file' ref={inputFile} style={{display: 'none'}}/>
         <CsvParser />
       </div>
     </div>
