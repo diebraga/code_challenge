@@ -5,6 +5,10 @@ import { ModalFooter } from './ModalFooter'
 import { useState } from 'react'
 import { FavouritePlayer } from './FavouritePlayer'
 import { Summary } from './Summary'
+import { Icon, StarIcon } from '@chakra-ui/icons'
+import { FaUpload } from 'react-icons/fa'
+import { BiListUl } from 'react-icons/bi'
+import { useTeamContext } from '../../contexts/teamContext'
 
 type ModalImporterProps = {
   showModal: boolean
@@ -13,6 +17,12 @@ type ModalImporterProps = {
 
 export function ModalImporter({ showModal, onCloseModal }: ModalImporterProps) {
   const [formStep, setFormStep] = useState(0)
+  const { 
+    setFavouritePlayer, 
+    setTeam, 
+    setTeamName, 
+    setfileName 
+  } = useTeamContext()
 
   function nextStep() {
     setFormStep(formStep + 1)
@@ -20,6 +30,24 @@ export function ModalImporter({ showModal, onCloseModal }: ModalImporterProps) {
 
   function prevStep() {
     setFormStep(formStep - 1)
+  }
+
+  async function sendTeamPlayers() {
+    setFormStep(0)
+    setFavouritePlayer('')
+    setTeam([])
+    setTeamName('')
+    setfileName('')
+  }
+
+  const activeStyles = {
+    background: '#1371FE',
+    color: '#fff'
+  }
+
+  const inactiveStyles = {
+    background: '#E5E5E5',
+    color: '#181b1e'
   }
 
   return (
@@ -38,16 +66,16 @@ export function ModalImporter({ showModal, onCloseModal }: ModalImporterProps) {
       </div>
     
       <div className={styles.stepsNav}>
-        <div className={styles.col}>
-          <span>Team Data</span>
+        <div className={styles.col} style={formStep === 0 ? activeStyles : inactiveStyles}>
+          <span><Icon as={FaUpload}/> &nbsp; Team Data</span>
           <div className={styles.arrow}></div>
         </div>
-        <div className={styles.col}>
-          <span>Favourite</span>
+        <div className={styles.col} style={formStep === 1 ? activeStyles : inactiveStyles}>
+          <span><StarIcon/> &nbsp; Favourite</span>
           <div className={styles.arrow}></div>
         </div>
-        <div className={styles.col}>
-          <span>Summary</span>
+        <div className={styles.col} style={formStep === 2 ? activeStyles : inactiveStyles}>
+          <span><Icon fontSize='2xl' as={BiListUl}/> &nbsp; Summary</span>
           <div className={styles.arrow}></div>
         </div>
       </div>

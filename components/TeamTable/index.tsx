@@ -1,35 +1,30 @@
+import { useTeamContext } from '../../contexts/teamContext'
 import styles from './styles.module.scss'
 
 export function TeamTable() {
+  const { team } = useTeamContext()
   return (
-    <table className={styles.tableWrapper}>
+    <div className={styles.container}>
+    <table className={`${styles.tableWrapper}`} >
       <tr className={styles.headWrapper}>
         <th>Player Name</th>
         <th>Jersey Number</th>
         <th>Position</th>
         <th>Nationality</th>
-        <th>Height</th>
-        <th>Weight</th>
-        <th>Status</th>
+        {/* <th>Status</th> */}
       </tr>
-      <tr className={styles.bodyWrapper}>
-        <td>Alfreds Futterkiste</td>
-        <td>9</td>
-        <td>Foward</td>
-        <td>German</td>
-        <td>1.90</td>
-        <td>90kg</td>
-        <td>Avalible</td>
-      </tr>
-      <tr>
-        <td>Alfreds Futterkiste</td>
-        <td>9</td>
-        <td>Foward</td>
-        <td>German</td>
-        <td>1.90</td>
-        <td>90kg</td>
-        <td>Avalible</td>
-      </tr>
+      {team.map((player, index) => {
+        return (
+          <tr className="card" tabIndex={0} key={index}>
+            <td className={styles.card}>{player.player_name}</td>
+            <td>{player.jersey_number}</td>
+            <td>{player.position}</td>
+            <td>{player.nationality}</td>
+            {/* <td>{player.height}</td> */}
+          </tr>
+        )
+      })}
     </table>
+    </div>
   )
 }

@@ -1,5 +1,6 @@
 .tableWrapper {
   width: 100%;
+
   td {
     text-align: center;
   }
@@ -17,8 +18,24 @@
   padding-right: 40px;
 }
 
+.container {
+  max-height: 90vh;
+  overflow-y: scroll;
+  width: 100%;
+  p {
+    font-size: 14px;
+    font-weight: 500;
+    padding-top: 20px;
+    padding-left: 20px;
+  }
+}
+
 .headWrapper {
-  background: cornsilk;
+  background: #F6F8FF;
+  height: 32px;
+  font-size: 12px;
+  color: #758CA3;
+  font-weight: 400;
 }
 
 .bodyWrapper {
