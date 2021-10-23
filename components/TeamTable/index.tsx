@@ -1,8 +1,10 @@
-import { useTeamContext } from '../../contexts/teamContext'
+import { getUserById, getUserMe } from '../../hooks/users'
 import styles from './styles.module.scss'
 
 export function TeamTable() {
-  const { team } = useTeamContext()
+  const { userMe } = getUserMe()
+  const { user } = getUserById(userMe?.id)
+
   return (
     <div className={styles.container}>
     <table className={`${styles.tableWrapper}`} >
@@ -11,16 +13,19 @@ export function TeamTable() {
         <th>Jersey Number</th>
         <th>Position</th>
         <th>Nationality</th>
+        <th>Height</th>
+        <th>Weight</th>
         {/* <th>Status</th> */}
       </tr>
-      {team.map((player, index) => {
+      {user?.players?.map((player, index) => {
         return (
           <tr className="card" tabIndex={0} key={index}>
             <td className={styles.card}>{player.player_name}</td>
             <td>{player.jersey_number}</td>
             <td>{player.position}</td>
             <td>{player.nationality}</td>
-            {/* <td>{player.height}</td> */}
+            <td>{player.height}</td>
+            <td>{player.weight}</td>
           </tr>
         )
       })}

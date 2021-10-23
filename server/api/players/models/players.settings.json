@@ -29,6 +29,11 @@
     },
     "position": {
       "type": "string"
+    },
+    "user": {
+      "via": "players",
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }

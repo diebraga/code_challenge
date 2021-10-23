@@ -64,6 +64,10 @@
     },
     "favouriteName": {
       "type": "string"
+    },
+    "players": {
+      "collection": "players",
+      "via": "user"
     }
   }
 }
