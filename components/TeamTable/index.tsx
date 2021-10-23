@@ -8,7 +8,7 @@ export function TeamTable() {
   return (
     <div className={styles.container}>
     <table className={`${styles.tableWrapper}`} >
-      <th className={styles.headWrapper}>
+      <tr className={styles.headWrapper}>
         <th>Player Name</th>
         <th>Jersey Number</th>
         <th>Position</th>
@@ -16,7 +16,7 @@ export function TeamTable() {
         <th>Height</th>
         <th>Weight</th>
         {/* <th>Status</th> */}
-      </th>
+      </tr>
       {user?.players?.map((player, index) => {
         let isFavourite = user?.favouriteName === player.player_name
 

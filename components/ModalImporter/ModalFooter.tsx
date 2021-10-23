@@ -64,7 +64,9 @@ export function ModalFooter({ formStep, prevStep, nextStep, closesModalAndClearS
       })
       if (response.ok) {
         mutateUser()
-        closesModalAndClearStates()
+        setTimeout(() => {
+          closesModalAndClearStates()
+        }, 3000);
       }
     })}
   }
