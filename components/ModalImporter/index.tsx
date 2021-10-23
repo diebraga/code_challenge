@@ -2,13 +2,14 @@ import styles from './styles.module.scss'
 import { IoIosClose } from 'react-icons/io'
 import { PlayerData } from './PlayerData'
 import { ModalFooter } from './ModalFooter'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { FavouritePlayer } from './FavouritePlayer'
 import { Summary } from './Summary'
 import { Icon, StarIcon } from '@chakra-ui/icons'
 import { FaUpload } from 'react-icons/fa'
 import { BiListUl } from 'react-icons/bi'
 import { useTeamContext } from '../../contexts/teamContext'
+import { getUserMe } from '../../hooks/users'
 
 type ModalImporterProps = {
   showModal: boolean
@@ -17,27 +18,22 @@ type ModalImporterProps = {
 
 export function ModalImporter({ showModal, onCloseModal }: ModalImporterProps) {
   const [formStep, setFormStep] = useState(0)
-  const { 
-    setFavouritePlayer, 
-    setTeam, 
-    setTeamName, 
-    setfileName 
-  } = useTeamContext()
+  const { setFavouritePlayer, setTeam, setTeamName, setfileName } = useTeamContext()
 
+  function closesModalAndClearStates() {
+    onCloseModal()
+    setFavouritePlayer('')
+    setTeamName('')
+    setTeam([])
+    setfileName('')
+    setFormStep(0)
+  }
   function nextStep() {
     setFormStep(formStep + 1)
   }
 
   function prevStep() {
     setFormStep(formStep - 1)
-  }
-
-  async function sendTeamPlayers() {
-    setFormStep(0)
-    setFavouritePlayer('')
-    setTeam([])
-    setTeamName('')
-    setfileName('')
   }
 
   const activeStyles = {
@@ -60,7 +56,7 @@ export function ModalImporter({ showModal, onCloseModal }: ModalImporterProps) {
           <p>Importer</p>
         </div>
         {/* @ts-ignore */}
-        <div onClick={onCloseModal}>
+        <div onClick={closesModalAndClearStates}>
           <IoIosClose size='40'/>
         </div>
       </div>
@@ -82,7 +78,7 @@ export function ModalImporter({ showModal, onCloseModal }: ModalImporterProps) {
       {formStep === 0 && <PlayerData />}
       {formStep === 1 && <FavouritePlayer />}
       {formStep === 2 && <Summary />}
-      <ModalFooter formStep={formStep} nextStep={nextStep} prevStep={prevStep}/>
+      <ModalFooter formStep={formStep} nextStep={nextStep} prevStep={prevStep} closesModalAndClearStates={closesModalAndClearStates} />
     </div>
   </div>
     )}

@@ -21,19 +21,21 @@ export function getUsers() {
 }
 
 export function getUserById(id: string) {
-  const { data, error } = useSWR([`${process.env.NEXT_PUBLIC_API}/users/${id}`, config])  
+  const { data, error, mutate } = useSWR([`${process.env.NEXT_PUBLIC_API}/users/${id}`, config])  
   return {
     user: data as Users,
     isLoading: !error && !data,
     error,
+    mutateUser: mutate
   } 
 }
 
 export function getUserMe() {
-  const { data, error } = useSWR([`${process.env.NEXT_PUBLIC_API}/users/me`, config])  
+  const { data, error, mutate } = useSWR([`${process.env.NEXT_PUBLIC_API}/users/me`, config])  
   return {
     userMe: data as Users,
     isLoading: !error && !data,
     error,
+    mutateMe: mutate
   } 
 }
