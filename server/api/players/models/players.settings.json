@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "players",
+  "info": {
+    "name": "players",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "player_name": {
+      "type": "string"
+    },
+    "jersey_number": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "nationality": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    }
+  }
+}

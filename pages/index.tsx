@@ -1,22 +1,13 @@
-import { useSession } from 'next-auth/client'
-import { useRouter } from 'next/dist/client/router'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { parseCookies } from 'nookies'
+import { useState } from 'react'
 import Header from '../components/Header/index'
 import { ModalImporter } from '../components/ModalImporter'
 import { TeamTable } from '../components/TeamTable'
 
 export default function Home() {
-  const [session, isLoading] = useSession()
   const [showModal, setShowModal] = useState(false)
-
-  const router = useRouter()
-
-  useEffect(() => {
-    if (!session) {
-      router.push('/signIn')
-    }
-  }, [session])
 
   function onOpenModal() {
     setShowModal(true)
@@ -38,4 +29,23 @@ export default function Home() {
       <ModalImporter showModal={showModal} onCloseModal={onCloseModal}/>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+	const jwt = parseCookies(ctx).jwt
+
+  if (!jwt) {
+    return { 
+      redirect: {
+        destination: '/signIn',
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: {
+			jwt: jwt,
+		}, 
+  }
 }
